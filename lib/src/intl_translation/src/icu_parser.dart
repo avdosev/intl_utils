@@ -65,7 +65,8 @@ class IcuParser {
   Parser get nonIcuMessageText => normalText.plus().map((x) => x.join());
   Parser get twoSingleQuotes => string("''").map((x) => "'");
   Parser get number => digit().plus().flatten().trim().map(int.parse);
-  Parser get id => (letter() & (word() | char('_')).star()).flatten().trim();
+  Parser get id =>
+      (letter() & (word() | char('_') | char('-')).star()).flatten().trim();
   Parser get comma => char(',').trim();
 
   /// Given a list of possible keywords, return a rule that accepts any of them.
